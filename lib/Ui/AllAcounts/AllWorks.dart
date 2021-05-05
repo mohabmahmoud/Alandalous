@@ -5,6 +5,8 @@ import 'package:alandalous/Constants/widthandheight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import 'MyTable.dart';
 class AllWorks extends StatefulWidget {
   @override
   _AllWorksState createState() => _AllWorksState();
@@ -26,11 +28,14 @@ class _AllWorksState extends State<AllWorks> {
           Column(children: [
         ClipPath(
             clipper: ArcClipper(),
-            child:            Container(height: getheight(context)/2.5,
+            child:            Container(height: getheight(context)/2,
                 decoration: BoxDecoration(color: Theme.of(context).primaryColor,
 
 
-                )
+
+
+                ),
+
 
             )),
 
@@ -57,25 +62,13 @@ class _AllWorksState extends State<AllWorks> {
                   ),
 
       child:Padding(child:
-      GridView.count(
-          shrinkWrap: true,
-          crossAxisCount: 3,
-          childAspectRatio: ((getwidth(context)/3) / getheight(context)*13),
-          children:[1,2,3,4,5,6,7,8,10,11,12].map<Widget>((e) {
-            return 
-              Padding(padding: EdgeInsets.all(3),child:Container(decoration:BoxDecoration(
-                
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: Theme.of(context).accentColor
-              
-              ),alignment: Alignment.center,child:
-                  Text('شهر ${e.toString()}',style:TextStyle(fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor,))
-              ));
 
-          }).toList()
-      ),
+      MyTable()
 
-        padding: EdgeInsets.only(top:50,)
+          ,
+
+
+        padding: EdgeInsets.only(top:70)
 
       )
                 ))
@@ -87,8 +80,7 @@ class _AllWorksState extends State<AllWorks> {
 
 
           ],),
-
- Container(padding: EdgeInsets.only(top:getheight(context)/7 ),
+          Container(padding: EdgeInsets.only(top:getheight(context)/4 ),
             child:
 
 
@@ -123,6 +115,42 @@ class _AllWorksState extends State<AllWorks> {
 
 
           ),
+          Positioned( right: getwidth(context)/15,left: getwidth(context)/15,top: getheight(context)/16,child:Container(height: getheight(context)/4,child:
+          Center(child:Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
+            Column(mainAxisAlignment: MainAxisAlignment.center,children: [
+              CircularPercentIndicator(
+                radius: getheight(context)/8,
+                lineWidth: 15,
+                percent: 0.5,
+                center: Text('%50',style: TextStyle(color: Theme.of(context).accentColor,fontWeight: FontWeight.bold),),
+                animationDuration: 3000,
+                progressColor: Colors.green,
+              ),
+
+              SizedBox(height: 5,),
+              Text('نسبة السداد %50',style: TextStyle(fontSize: 12,color: Theme.of(context).accentColor,fontWeight: FontWeight.bold),)
+            ],),
+            Container(child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.center,children: [
+                  ItemDesc('السلعة',' موبايل oppo 5a'),
+                  ItemDesc('المدفوع','1000 جنية'),
+                  ItemDesc('المتبقى','1000 جنية'),
+                  SizedBox(height: 10,),
+                  Text('')
+    ],)
+
+
+
+
+            )
+
+
+
+
+          ],))))
+
+
+
         ],)
 
 
@@ -132,35 +160,7 @@ class _AllWorksState extends State<AllWorks> {
     );
   }
 
-  Widget code(){
-    return Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-      Row(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,children: [
-        Text('#B234',textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
 
-        Icon(Icons.person_outline),
-
-      ],),
-      Text('المدفوع 1000 جنية',textAlign: TextAlign.center,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor),),
-      Text('المتبقي 1000 جنية',textAlign: TextAlign.center,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor),),
-    ],);
-
-
-  }
-  Widget Selectedcode(){
-    return Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-      Row(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,children: [
-        Text('#B234',textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
-
-        Icon(Icons.person_outline),
-
-      ],),
-      Text('المدفوع 1000 جنية',textAlign: TextAlign.center,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor),),
-      Text('المتبقي 1000 جنية',textAlign: TextAlign.center,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor),),
-      Text('الشهور المتبقية 3 شهور',textAlign: TextAlign.center,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor),),
-    ],);
-
-
-  }
   
   
 
@@ -170,10 +170,11 @@ class _AllWorksState extends State<AllWorks> {
   Widget circleOffer(String image, double scale) {
 
     return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
+      alignment: Alignment.center,
+      child: Container(padding: EdgeInsets.only(top:20),
+        alignment: Alignment.centerRight,
         height: getwidth(context)/2.5 * scale,
-        width: getwidth(context)/2.5 * scale,
+        width: getwidth(context)/2.5* scale,
         child:
         Stack(children: [
           Card(
@@ -198,7 +199,7 @@ class _AllWorksState extends State<AllWorks> {
 
   PageController pageController;
 
-  int currentPage = 2;
+  int currentPage = 3;
 
   List<Map<String, String>> listOfCharacters = [
     {'image': "images/money_bag.png", 'name': "Richmond"},
@@ -215,6 +216,17 @@ class _AllWorksState extends State<AllWorks> {
     pageController =
         PageController(initialPage: currentPage, viewportFraction: viewPortFraction);
     super.initState();
+  }
+
+  Row ItemDesc(String name,String value){
+    return
+
+      Row(children: [
+
+        Text(name,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+        Text(' : ${value}',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+
+      ],);
   }
 
 }

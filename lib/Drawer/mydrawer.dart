@@ -3,7 +3,7 @@ import 'package:alandalous/Constants/ClassNavigator.dart';
 import 'package:alandalous/Constants/showtoast.dart';
 import 'package:alandalous/Constants/widthandheight.dart';
 import 'package:alandalous/Ui/AllStoresMap.dart';
-import 'package:alandalous/Ui/AllWorks.dart';
+import 'package:alandalous/Ui/AllAcounts/AllWorks.dart';
 import 'package:alandalous/Ui/Cards/CardPage.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -36,25 +36,16 @@ Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxis
 
 
 ),
-    SizedBox(height: 20,),
-    ListItem( context),
-    ListItem( context),
-    ListItem( context),
-    ListItem( context),
+    SizedBox(height: 5,),
+    Container(child:Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+      MoneyView( context, 'مستقطعات', 500),
+      Container(height: 40,width: 2,color: Theme.of(context).accentColor,),
+      MoneyView( context, 'مفردات المرتب', 500),
 
-    ListTile(leading: Icon(Icons.favorite_border,color: Colors.white,),title: Text('المفضلة',style: TextStyle(color: Colors.white,fontSize: 17),),),
-    ListTile(onTap: (){
+    ],),),
+    Drawer_ListItem( 'تفاصيل الرصيد',Icons.monetization_on_rounded,context),
+    Drawer_ListItem( ' إحصائيات اسبوعية',Icons.stacked_line_chart_sharp,context),
 
-      Navigator.pop(context);
-      Navigator.push(context, SecondPageRoute(AllWorks()));
-
-    },leading: Icon(Icons.work_outline_outlined,color: Colors.white,),title: Text('حساباتك',style: TextStyle(color: Colors.white,fontSize: 17),),),
-    ListTile(leading: Icon(Icons.monetization_on_rounded,color: Colors.white,),title: Text('رصيدك الحالي',style: TextStyle(color: Colors.white,fontSize: 17),),),
-    ListTile(onTap: ()async{
-
-
-
-    },leading: Icon(Icons.location_on_outlined,color: Colors.white,),title: Text('جميع فروعنا',style: TextStyle(color: Colors.white,fontSize: 17),),),
 
 
 
@@ -69,24 +60,33 @@ Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxis
 }
 
 
-Widget ListItem(BuildContext context){
+Widget Drawer_ListItem(String name,var icon,BuildContext context){
 
   return Column(children: [
 
 
-    SizedBox(height: 5,),
 
     InkWell(onTap: (){
       Navigator.push(context, SecondPageRoute(About()));
 
     },child: Row(children: [
-      Icon(Icons.monetization_on_rounded,color: Theme.of(context).accentColor,),
+      SizedBox(width: 10,),
+
+      Icon(icon,size: 20,color: Theme.of(context).accentColor,),
       SizedBox(width: 8,),
 
-      Text('عمليات الدفع و تفاصيل الرصيد',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 15),)
+      Text(name,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 14),)
     ],),),
-    SizedBox(height: 5,),
+    SizedBox(height: 10,),
     Divider(height: 7,),
   ],);
+
+}
+
+
+Container MoneyView(BuildContext context,String name,double money){
+  return Container(width: getwidth(context)/3-5,child: ListTile(title: Text(name,textAlign: TextAlign.center,style: TextStyle(color: Theme.of(context).accentColor,fontSize: 13),),
+    subtitle: Text('${money} جنية',textAlign: TextAlign.center,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),),
+  ));
 
 }
