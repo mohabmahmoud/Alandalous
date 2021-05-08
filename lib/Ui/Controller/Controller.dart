@@ -3,6 +3,7 @@ import 'package:alandalous/Constants/showtoast.dart';
 import 'package:alandalous/Constants/widthandheight.dart';
 import 'package:alandalous/Drawer/mydrawer.dart';
 import 'package:alandalous/Ui/AddOrder/AllCat_Orders.dart';
+import 'package:alandalous/Ui/AllAcounts/AllAcounts.dart';
 import 'package:alandalous/Ui/Cards/AllCards.dart';
 import 'package:alandalous/Ui/Category/AllCategrios.dart';
 import 'package:alandalous/Ui/HomeScreen/Home.dart';
@@ -31,7 +32,7 @@ class Controller extends StatefulWidget {
 class _ControllerState extends State<Controller> {
 
 
-  List<Widget> Pages=[HomePage(true),AllCategrios(true),AllCards(),AllWorks(),More_Screen()];
+  List<Widget> Pages=[HomePage(true),AllCategrios(true),AllCards(),AllAcounts(),More_Screen()];
 
   int index=0;
 

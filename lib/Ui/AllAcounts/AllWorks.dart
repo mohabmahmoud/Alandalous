@@ -26,9 +26,7 @@ class _AllWorksState extends State<AllWorks> {
 
         Stack(children: [
           Column(children: [
-        ClipPath(
-            clipper: ArcClipper(),
-            child:            Container(height: getheight(context)/2,
+                   Container(height: getheight(context)/4,
                 decoration: BoxDecoration(color: Theme.of(context).primaryColor,
 
 
@@ -37,21 +35,15 @@ class _AllWorksState extends State<AllWorks> {
                 ),
 
 
-            )),
+            ),
+    Container(height: getheight(context)/4,),
 
 
 
 
 
-
-
-
-    Expanded(
-    child:
-    ClipPath(
-        clipper: OvalTopBorderClipper(),
-    child:
-    Container(
+    Container
+      (
                 decoration: BoxDecoration(color: Theme.of(context).primaryColor,
 
 
@@ -71,22 +63,67 @@ class _AllWorksState extends State<AllWorks> {
         padding: EdgeInsets.only(top:70)
 
       )
-                ))
+                )
 
-            ),
+          ,
 
 
 
 
 
           ],),
+
+
+
+    Container(padding: EdgeInsets.only(top:getheight(context)/4 ),
+    child:Column(children: [
+            ClipPath(
+              clipper: ArcClipper(),child:
+                Container(color: Theme.of(context).primaryColor,height: getheight(context)/8,),
+
+
+
+
+
+
+
+
+
+
+            ),
+           Transform.scale(
+    scale: -1,child:
+    ClipPath(
+        clipper: ArcClipper()
+        ,child:
+      Container(color: Theme.of(context).primaryColor,height: getheight(context)/8,),
+
+
+
+
+
+
+
+
+
+
+      )),
+
+
+
+
+
+          ],)),
+
+
           Container(padding: EdgeInsets.only(top:getheight(context)/4 ),
             child:
 
 
             Container(
-              height: getheight(context)/3,
-              child: NotificationListener<ScrollNotification>(
+              height: getheight(context)/4,
+              child:
+              NotificationListener<ScrollNotification>(
                 onNotification: (ScrollNotification notification) {
                   if (notification is ScrollUpdateNotification) {
                     setState(() {
@@ -115,6 +152,12 @@ class _AllWorksState extends State<AllWorks> {
 
 
           ),
+
+
+
+
+
+
           Positioned( right: getwidth(context)/15,left: getwidth(context)/15,top: getheight(context)/16,child:Container(height: getheight(context)/4,child:
           Center(child:Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
             Column(mainAxisAlignment: MainAxisAlignment.center,children: [
@@ -171,10 +214,10 @@ class _AllWorksState extends State<AllWorks> {
 
     return Align(
       alignment: Alignment.center,
-      child: Container(padding: EdgeInsets.only(top:20),
+      child: Container(
         alignment: Alignment.centerRight,
-        height: getwidth(context)/2.5 * scale,
-        width: getwidth(context)/2.5* scale,
+        height: getwidth(context)/3 * scale,
+        width: getwidth(context)/3* scale,
         child:
         Stack(children: [
           Card(
